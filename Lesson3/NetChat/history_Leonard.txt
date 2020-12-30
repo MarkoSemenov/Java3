@@ -1,0 +1,12 @@
+Leonard: hi 
+Leonard: 1
+Leonard: 2
+Leonard: 3
+Leonard: 4
+Leonard: 5
+Leonard: 6
+Leonard: 7
+Сервер:11111111111111111
+Сервер:2222222222222222
+Сервер:3333333333333333
+Mark left chat
