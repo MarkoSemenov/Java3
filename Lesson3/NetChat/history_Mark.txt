@@ -158,3 +158,22 @@ Leonard: 7
 Сервер:3333333333333333
 Leonard left chat
 Leonard зашел в чат...
+Mark: ewrwer
+Сервер:eewwer
+Mark: 1.1.1.1.
+Сервер:2.2.2.2.
+Mark: 33Mark: 1.2.3.4
+Сервер:2.3.2.3.
+Mark: q.w.e.r
+Сервер:a.s.a.s.
+Mark: e
+Mark: 2
+Mark: e
+Markswell: 1
+Mark: 3
+Сервер:4
+Alexa зашел в чат...
+Alexa: Hi Mark
+Mark: Hi
+Alexandra: it's me
+Alexa left chat

@@ -19,11 +19,11 @@ public class Client {
     private final Controller controller;
     private volatile boolean isConnect = true;
     public volatile static boolean authorization = false;
+    public boolean isHistoryWrite = true;
     private String[] getNicksFromServer;
     private String nick;
-    BufferedWriter fileWriter = null;
-    BufferedReader fileReader;
-    private String historyPath;
+    private BufferedWriter fileWriter = null;
+    private BufferedReader fileReader;
 
 
     public Client(Controller controller) throws IOException {
@@ -78,14 +78,13 @@ public class Client {
         } else if (getMsg.startsWith("/client ")) {
             String[] msg = getMsg.split(" ", 2);
             nick = msg[1].trim();
-            historyPath = "history_" + nick + ".txt";
-            fileWriter = new BufferedWriter(new FileWriter(historyPath, true));
-            fileReader = new BufferedReader(new FileReader(historyPath));
+            if (isHistoryWrite) {
+                String historyPath = "history_" + nick + ".txt";
+                fileWriter = new BufferedWriter(new FileWriter(historyPath, true));
+                fileReader = new BufferedReader(new FileReader(historyPath));
+                isHistoryWrite = false;
+            }
             Platform.runLater(new Thread(() -> NetChat.primaryStage.setTitle(nick)));
-        } else if (getMsg.startsWith("/history")) {
-            Platform.runLater(new Thread(() -> {
-                controller.chatTextArea.appendText(getMsg);
-            }));
         } else {
             controller.chatTextArea.appendText(getMsg);
             saveHistory(getMsg);
@@ -94,12 +93,13 @@ public class Client {
 
 
     public void closeConnection() {
+
         if (socket.isConnected()) {
             try {
+                fileReader.close();
+                fileWriter.close();
                 outputMessage.close();
                 inputMessage.close();
-                fileWriter.close();
-                fileReader.close();
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -120,7 +120,6 @@ public class Client {
         while (true) {
             String str = inputMessage.readUTF();
             if (str.startsWith("Success")) {
-                setAuthorization(true);
                 Platform.runLater(new Thread(() -> NetChat.authStage.close()));
                 Platform.runLater(new Thread(NetChat::showChat));
                 Platform.runLater(new Thread(() -> {
@@ -130,6 +129,7 @@ public class Client {
                         e.printStackTrace();
                     }
                 }));
+                setAuthorization(true);
                 return;
             }
             if (str.startsWith("forcedClose")) {
@@ -143,9 +143,11 @@ public class Client {
     private void loadHistory() throws IOException {
         List<String> list = new ArrayList<>();
         String line;
+
         while ((line = fileReader.readLine()) != null) {
             list.add(line);
         }
+
         if (list.size() < 100) {
             for (String s : list) {
                 controller.chatTextArea.appendText(s + "\n");
@@ -153,7 +155,6 @@ public class Client {
         } else {
             for (int i = list.size() - 100; i < list.size(); i++) {
                 controller.chatTextArea.appendText(list.get(i) + "\n");
-                controller.chatTextArea.forward();
             }
         }
     }
