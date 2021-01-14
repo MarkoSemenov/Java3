@@ -1,0 +1,11 @@
+public enum CommandType {
+
+    AUTH,
+    AUTH_OK,
+    PRIVATE_MESSAGE,
+    PUBLIC_MESSAGE,
+    ERROR,
+    REGISTRATION,
+    CHANGE_NICKNAME,
+    INFO_ABOUT_USERS,
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="250" prefWidth="400" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpWindow">
+
+    <VBox alignment="CENTER" layoutX="100.0" layoutY="65.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="65.0">
+        <TextField fx:id="nickname" prefHeight="30" prefWidth="200" promptText="nickname" onAction="#registration"/>
+        <TextField fx:id="login" prefHeight="30" prefWidth="200" promptText="login" onAction="#registration"/>
+        <PasswordField fx:id="password" prefHeight="30" prefWidth="200" promptText="password" onAction="#registration"/>
+        <Button prefHeight="30" prefWidth="200" text="Ok" onAction="#registration" />
+    </VBox>
+
+</AnchorPane>

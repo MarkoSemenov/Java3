@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500" prefWidth="600" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AuthController">
+
+    <VBox prefWidth="600">
+        <MenuBar>
+            <Menu text="Menu">
+                <MenuItem text="Sign Up" onAction="#openRegWindow"/>
+                <MenuItem text="Exit" onAction="#closeWindow"/>
+            </Menu>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </MenuBar>
+    </VBox>
+
+    <VBox alignment="CENTER" AnchorPane.leftAnchor="200" AnchorPane.topAnchor="200">
+
+        <TextField fx:id="login" onAction="#entrance" prefHeight="30" promptText="Login" />
+        <PasswordField fx:id="password" onAction="#entrance" prefHeight="30" promptText="Password" />
+        <Button fx:id="enter" lineSpacing="20" onAction="#entrance" prefHeight="30" prefWidth="200" text="Sing in" />
+    </VBox>
+</AnchorPane>
