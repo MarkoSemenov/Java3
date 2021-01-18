@@ -9,20 +9,16 @@ public class MainClass {
     public static ExecutorService executorService;
     public static Lock locker;
 
-
     public static void main(String[] args) {
         locker = new ReentrantLock();
         barrier = new CyclicBarrier(CARS_COUNT + 1);
         executorService = Executors.newFixedThreadPool(CARS_COUNT);
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
-        Car[] cars = new Car[CARS_COUNT];
-
 
         try {
             System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
             for (int i = 0; i < CARS_COUNT; i++) {
-                cars[i] = new Car(race, 20 + (int) (Math.random() * 10), barrier, locker);
-                executorService.execute(cars[i]);
+                executorService.execute(new Car(race, 20 + (int) (Math.random() * 10), barrier, locker));
             }
 
             barrier.await();
