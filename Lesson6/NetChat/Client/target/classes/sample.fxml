@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+
+    <MenuBar>
+        <Menu text="Menu">
+            <MenuItem onAction="#changeNick" text="Change Nickname" />
+            <MenuItem onAction="#exit" text="Exit" />
+        </Menu>
+    </MenuBar>
+
+    <HBox VBox.vgrow="ALWAYS">
+        <ListView fx:id="nickNames" onMouseClicked="#choiceUserToSendPersonalMsg" prefWidth="300" />
+        <VBox HBox.hgrow="ALWAYS">
+            <TextArea fx:id="chatTextArea" editable="false" focusTraversable="false" wrapText="true" SplitPane.resizableWithParent="false" VBox.vgrow="ALWAYS" />
+            <HBox>
+                <TextField fx:id="sendTextField" onAction="#clickOnSendButton" prefHeight="50" promptText="Write a message..." HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></TextField>
+                <Button fx:id="sendButton" alignment="CENTER" maxWidth="100" onAction="#clickOnSendButton" prefHeight="50" text="Send" />
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>
